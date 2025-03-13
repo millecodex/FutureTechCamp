@@ -1,0 +1,7 @@
+package.json"
+{
+  "dependencies": {
+    "react-intersection-observer": "^9.5.3"
+  }
+}
+
