@@ -19,7 +19,7 @@ export default function LandingPage() {
     const handleScroll = () => {
       if (footerRef.current && applyRef.current) {
         const footerRect = footerRef.current.getBoundingClientRect()
-        const applyRect = applyRef.current.getBoundingClientRect()
+        const applyRect = applyRef.current.getBoundingClientRect()  
         const windowHeight = window.innerHeight
         
         // Hide button when footer is visible or when apply section is visible
