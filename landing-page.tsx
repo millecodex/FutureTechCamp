@@ -1,16 +1,19 @@
 "use client"
 
+import React from 'react'
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, forwardRef, useRef } from "react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { useInView } from "react-intersection-observer"
 
 export default function LandingPage() {
   const [showStickyButton, setShowStickyButton] = useState(true)
-  const footerRef = useRef(null)
-  const applyRef = useRef(null)
+  //const footerRef = useRef(null)
+  //const applyRef = useRef(null)
+  const footerRef = useRef<HTMLDivElement>(null)
+  const applyRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,7 +21,7 @@ export default function LandingPage() {
         const footerRect = footerRef.current.getBoundingClientRect()
         const applyRect = applyRef.current.getBoundingClientRect()
         const windowHeight = window.innerHeight
-
+        
         // Hide button when footer is visible or when apply section is visible
         // Using a smaller threshold to hide button before footer is fully visible
         const isFooterVisible = footerRect.top < windowHeight - 100
@@ -35,7 +38,55 @@ export default function LandingPage() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Define the props interface
+  interface AnimatedSectionProps {
+    children: React.ReactNode;
+    className?: string;
+    id?: string;
+  }
+
+  // Add type annotation to the component
   // Create a reusable animation section component
+  const AnimatedSection = forwardRef<HTMLElement, AnimatedSectionProps>(
+    ({ children, className, id = "" }, ref) => {
+      const [inViewRef, inView] = useInView({
+        triggerOnce: true,
+        threshold: 0.1,
+        rootMargin: "-50px 0px",
+      });
+  
+      // Combine the forwarded ref with the inView ref
+      const setRefs = React.useCallback(
+        (element: HTMLElement | null) => {
+          // Set the inViewRef
+          inViewRef(element);
+          
+          // Forward the ref
+          if (typeof ref === 'function') {
+            ref(element);
+          } else if (ref) {
+            ref.current = element;
+          }
+        },
+        [inViewRef, ref]
+      );
+  
+      return (
+        <section
+          ref={setRefs}
+          id={id}
+          className={`${className} transition-all duration-700 transform w-full ${
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          {children}
+        </section>
+      );
+    }
+  );
+  
+
+  /* // Create a reusable animation section component
   const AnimatedSection = ({ children, className, id = "" }) => {
     const [ref, inView] = useInView({
       triggerOnce: true,
@@ -54,7 +105,7 @@ export default function LandingPage() {
         {children}
       </section>
     )
-  }
+  } */
 
   return (
     <div className="flex min-h-screen flex-col bg-gray-50">
