@@ -10,10 +10,10 @@ import { useInView } from "react-intersection-observer"
 
 export default function LandingPage() {
   const [showStickyButton, setShowStickyButton] = useState(true)
-  //const footerRef = useRef(null)
-  //const applyRef = useRef(null)
   const footerRef = useRef<HTMLDivElement>(null)
   const applyRef = useRef<HTMLDivElement>(null)
+  const APPLY_FORM_URL = "https://forms.gle/exampleFormLink123456"
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -507,6 +507,7 @@ export default function LandingPage() {
           <Button
             size="lg"
             className="bg-white text-purple-500 hover:bg-gray-100 text-lg px-8 py-6 h-auto rounded-full shadow-lg relative overflow-hidden transition-all hover:shadow-purple-300/50 hover:scale-105 animate-pulse"
+            onClick={() => window.open(APPLY_FORM_URL, "_blank")}
           >
             Apply Now for FutureTech Camp 2025
           </Button>
@@ -515,20 +516,24 @@ export default function LandingPage() {
 
       {/* Sticky Apply Now Button */}
       {showStickyButton && (
-        <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-slate-800 to-gray-700 border-t border-gray-600 shadow-lg p-4 flex justify-center items-center z-50 animate-fade-in-up">
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-pink-600 to-purple-700 text-white text-lg px-8 py-6 h-auto rounded-full shadow-lg relative overflow-hidden transition-all hover:shadow-purple-300/50 hover:scale-105 border border-white"
-            onClick={() => {
-              const applySection = document.getElementById("apply-section")
-              if (applySection) {
-                applySection.scrollIntoView({ behavior: "smooth" })
-              }
-            }}
-          >
-            Apply Now for Future Tech Camp 2025
-          </Button>
-        </div>
+      <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-slate-800 to-gray-700 border-t border-gray-600 shadow-lg p-4 flex justify-center items-center z-50 animate-fade-in-up">
+        <Button
+          size="lg"
+          className="bg-gradient-to-r from-pink-600 to-purple-700 text-white text-lg px-8 py-6 h-auto rounded-full shadow-lg relative overflow-hidden transition-all hover:shadow-purple-300/50 hover:scale-105 border border-white"
+          onClick={() => {
+            // First scroll to the apply section
+            const applySection = document.getElementById("apply-section")
+            if (applySection) {
+              applySection.scrollIntoView({ behavior: "smooth" })
+            }
+            
+            // Then open the application URL in a new tab
+            window.open(APPLY_FORM_URL, "_blank")
+          }}
+        >
+          Apply Now for Future Tech Camp 2025
+        </Button>
+      </div>
       )}
 
       {/* Footer with RMIT Saigon campus background */}
