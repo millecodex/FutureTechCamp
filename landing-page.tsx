@@ -13,7 +13,6 @@ export default function LandingPage() {
   const footerRef = useRef<HTMLDivElement>(null)
   const applyRef = useRef<HTMLDivElement>(null)
   const APPLY_FORM_URL = "https://forms.gle/exampleFormLink123456"
-  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -369,53 +368,67 @@ export default function LandingPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {[
               {
-                name: "Kap",
+                name: "Kapil Dev",
                 position: "Founder of FutureTech Camp",
-                specialty: "Senior Lecturer",
+                specialty: "Visual Computing",
                 image:
                   "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/kap-uAxfJ8jf2WJS9KcCM7L1dbcL1Ivf3P.jpeg",
               },
               {
-                name: "Jeff",
+                name: "Jeff Nijsse",
                 position: "Senior Lecturer",
                 specialty: "Arduino Robotics",
                 image:
                   "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/STEM-Fair-053%20-%20Copy.jpg-RTn8YwOiQ683j03BVObR5yZgloYUnr.jpeg",
               },
               {
-                name: "Dr. Sarah Nguyen",
-                position: "Associate Professor",
-                specialty: "Artificial Intelligence & Machine Learning",
+                name: "Linh Tran",
+                position: "Lecturer",
+                specialty: "Python Programming",
+                image: "/assets/Linh.png",
+              },
+              {
+                name: "Hoang Van",
+                position: "Lecturer",
+                specialty: "Generative AI",
                 image: null,
               },
               {
-                name: "Prof. David Tran",
-                position: "Department Head",
-                specialty: "Computer Science & Robotics",
-                image: null,
-              },
-              {
-                name: "Dr. Michael Pham",
+                name: "Sreenivas Tirumala",
                 position: "Senior Lecturer",
-                specialty: "Game Development & Interactive Media",
+                specialty: "Cyber Detective",
                 image: null,
               },
               {
-                name: "Dr. Lisa Hoang",
-                position: "Assistant Professor",
-                specialty: "Digital Innovation & Entrepreneurship",
+                name: "Nhat-Quang Tran",
+                position: "Lecturer",
+                specialty: "AI Ethics & Laws",
                 image: null,
               },
               {
-                name: "Prof. Robert Le",
-                position: "Professor",
-                specialty: "Cybersecurity & Ethical Hacking",
+                name: "Phong Ngo",
+                position: "Lecturer",
+                specialty: "Game Development",
                 image: null,
               },
-              { name: "Dr. Emily Truong", position: "Lecturer", specialty: "Data Science & Analytics", image: null },
+              { name: "Tom Huynh", 
+                position: "Lecturer", 
+                specialty: "iPhone Development", 
+                image: null 
+              },
+              { name: "Sam Goundar", 
+                position: "Senior Lecturer", 
+                specialty: "AI-ML", 
+                image: null 
+              },
+              { name: "Ben Scott", 
+                position: "Lecturer", 
+                specialty: "Cyber Detective", 
+                image: null 
+              },
             ].map((lecturer, index) => (
               <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
-                <div className="bg-gray-200 w-full h-48">
+                <div className="bg-gray-200 w-full aspect-square">
                   {lecturer.image ? (
                     <Image
                       src={lecturer.image || "/placeholder.svg"}
