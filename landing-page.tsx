@@ -265,11 +265,11 @@ export default function LandingPage() {
                       <br />
                       (9:00 - 12:00)
                     </td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Welcome & Team Building</td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Coding Fundamentals</td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">AI Workshop</td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Project Development</td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Final Presentations</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">Welcome & Creative Coding I</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">Build a shooter game with PyGame </td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">AI-ML Workshop I</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">Cyber Detective</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">Arduino Robotics II</td>
                   </tr>
                   <tr>
                     <td className="border border-gray-700 p-3 font-medium bg-gray-700">
@@ -279,7 +279,7 @@ export default function LandingPage() {
                     </td>
                     <td className="border border-gray-700 p-3 bg-gray-900">Campus Tour</td>
                     <td className="border border-gray-700 p-3 bg-gray-900">Group Lunch</td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Guest Speaker</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">Group Lunch</td>
                     <td className="border border-gray-700 p-3 bg-gray-900">Group Lunch</td>
                     <td className="border border-gray-700 p-3 bg-gray-900">Celebration Lunch</td>
                   </tr>
@@ -289,11 +289,11 @@ export default function LandingPage() {
                       <br />
                       (13:00 - 16:00)
                     </td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Introduction to Tech</td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Team Challenges</td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Robotics Lab</td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Project Work</td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Awards & Closing</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">Creative Coding II</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">Shooter game tournament</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">AI-ML Workshop I</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">Arduino Robotics I</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">Showcase & Awards</td>
                   </tr>
                 </tbody>
               </table>
@@ -322,8 +322,8 @@ export default function LandingPage() {
                       <br />
                       (9:00 - 12:00)
                     </td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Orientation & Icebreakers</td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Design Thinking</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">Welcome & Intro to Python I</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">AI-ML I</td>
                     <td className="border border-gray-700 p-3 bg-gray-900">Game Development</td>
                     <td className="border border-gray-700 p-3 bg-gray-900">Innovation Workshop</td>
                     <td className="border border-gray-700 p-3 bg-gray-900">Demo Day Prep</td>
@@ -334,11 +334,11 @@ export default function LandingPage() {
                       <br />
                       (12:00 - 13:00)
                     </td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Welcome Lunch</td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Tech Talk</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">Campus Tour</td>
                     <td className="border border-gray-700 p-3 bg-gray-900">Group Lunch</td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Industry Mentors</td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Farewell Lunch</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">Group Lunch</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">Group Lunch</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">Celebration Lunch</td>
                   </tr>
                   <tr>
                     <td className="border border-gray-700 p-3 font-medium bg-gray-700">
@@ -346,11 +346,11 @@ export default function LandingPage() {
                       <br />
                       (13:00 - 16:00)
                     </td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Tech Exploration</td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Coding Challenge</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">Python II</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">AI-ML II</td>
                     <td className="border border-gray-700 p-3 bg-gray-900">Field Trip</td>
                     <td className="border border-gray-700 p-3 bg-gray-900">Project Finalization</td>
-                    <td className="border border-gray-700 p-3 bg-gray-900">Showcase & Certificates</td>
+                    <td className="border border-gray-700 p-3 bg-gray-900">Showcase & Awards</td>
                   </tr>
                 </tbody>
               </table>
