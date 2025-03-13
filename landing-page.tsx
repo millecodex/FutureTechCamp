@@ -391,40 +391,40 @@ export default function LandingPage() {
                 name: "Hoang Van",
                 position: "Lecturer",
                 specialty: "Generative AI",
-                image: null,
+                image: "/assets/Hoang.png",
               },
               {
                 name: "Sreenivas Tirumala",
                 position: "Senior Lecturer",
                 specialty: "Cyber Detective",
-                image: null,
+                image: "/assets/Sree.jpeg",
               },
               {
                 name: "Nhat-Quang Tran",
                 position: "Lecturer",
                 specialty: "AI Ethics & Laws",
-                image: null,
+                image: "/assets/NQ.png",
               },
               {
                 name: "Phong Ngo",
                 position: "Lecturer",
                 specialty: "Game Development",
-                image: null,
+                image: "/assets/Phong.jpeg",
               },
               { name: "Tom Huynh", 
                 position: "Lecturer", 
                 specialty: "iPhone Development", 
-                image: null 
+                image: "/assets/Tom.jpeg" 
               },
               { name: "Sam Goundar", 
                 position: "Senior Lecturer", 
                 specialty: "AI-ML", 
-                image: null 
+                image: "/assets/Sam.jpeg" 
               },
               { name: "Ben Scott", 
                 position: "Lecturer", 
                 specialty: "Cyber Detective", 
-                image: null 
+                image: "/assets/Ben.png" 
               },
             ].map((lecturer, index) => (
               <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
