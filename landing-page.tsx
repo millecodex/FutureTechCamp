@@ -10,6 +10,7 @@ import { useInView } from "react-intersection-observer"
 
 export default function LandingPage() {
   const [showStickyButton, setShowStickyButton] = useState(true)
+  const [isFadingOut, setIsFadingOut] = useState(false);
   const footerRef = useRef<HTMLDivElement>(null)
   const applyRef = useRef<HTMLDivElement>(null)
   const APPLY_FORM_URL = "https://forms.gle/exampleFormLink123456"
@@ -25,17 +26,25 @@ export default function LandingPage() {
         // Using a smaller threshold to hide button before footer is fully visible
         const isFooterVisible = footerRect.top < windowHeight - 100
         const isApplySectionVisible = applyRect.top < windowHeight && applyRect.bottom > 0
-
-        setShowStickyButton(!isFooterVisible && !isApplySectionVisible)
+  
+        if (!isFooterVisible && !isApplySectionVisible) {
+          setIsFadingOut(false);
+          setShowStickyButton(true);
+        } else {
+          setIsFadingOut(true);
+          setTimeout(() => {
+            setShowStickyButton(false);
+          }, 300); // Match the transition duration
+        }
       }
     }
-
+  
     window.addEventListener("scroll", handleScroll)
     // Initial check
     handleScroll()
-
+  
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [footerRef, applyRef])
 
   // Define the props interface
   interface AnimatedSectionProps {
@@ -45,9 +54,8 @@ export default function LandingPage() {
   }
 
   // Add type annotation to the component
-  // Create a reusable animation section component
-  const AnimatedSection = forwardRef<HTMLElement, AnimatedSectionProps>(
-    ({ children, className, id = "" }, ref) => {
+  const AnimatedSection = forwardRef<HTMLElement, AnimatedSectionProps & { animate?: boolean }>(
+    ({ children, className, id = "", animate = true }, ref) => {
       const [inViewRef, inView] = useInView({
         triggerOnce: true,
         threshold: 0.1,
@@ -74,8 +82,8 @@ export default function LandingPage() {
         <section
           ref={setRefs}
           id={id}
-          className={`${className} transition-all duration-700 transform w-full ${
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          className={`${className} ${animate ? "transition-all duration-700 transform w-full" : "w-full"} ${
+            animate && inView ? "opacity-100 translate-y-0" : animate ? "opacity-0 translate-y-10" : ""
           }`}
         >
           {children}
@@ -84,28 +92,7 @@ export default function LandingPage() {
     }
   );
   
-
-  /* // Create a reusable animation section component
-  const AnimatedSection = ({ children, className, id = "" }) => {
-    const [ref, inView] = useInView({
-      triggerOnce: true,
-      threshold: 0.1,
-      rootMargin: "-50px 0px",
-    })
-
-    return (
-      <section
-        ref={ref}
-        id={id}
-        className={`${className} transition-all duration-700 transform w-full ${
-          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
-      >
-        {children}
-      </section>
-    )
-  } */
-
+  
   return (
     <div className="flex min-h-screen flex-col bg-gray-50">
       {/* Hero Section - Updated with larger logo and title */}
@@ -125,13 +112,15 @@ export default function LandingPage() {
                   real-world skills.
                 </p>
               </div>
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/rmit-logo-NvXfm8RbxMYDQOYh5K1nZxohipF5GO.png"
-                width={250}
-                height={100}
-                alt="RMIT University Logo"
-                className="object-contain"
-              />
+              <a href="https://www.rmit.edu.vn/about-us/schools-and-centres/school-of-science-engineering-and-technology" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src="/assets/RMIT-Logo-header.png"
+                  width={375}
+                  height={150}
+                  alt="RMIT University Logo"
+                  className="object-contain"
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -141,34 +130,34 @@ export default function LandingPage() {
       <AnimatedSection className="w-full py-16 md:py-24 border-t border-gray-200 bg-gray-50 mt-8">
         <div className="container px-4 md:px-8 mx-auto max-w-[1400px]">
           <h2 className="text-4xl font-bold tracking-tighter bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text mb-12">
-            Experience University Learning at RMIT
+            This Summer Come Experience University Learning at RMIT
           </h2>
           <div className="grid gap-8 md:grid-cols-2">
             <div className="space-y-4">
               <h3 className="text-xl font-medium bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">
-                Problem solve with code
+                Deploy Artificial Intelligence Strategies
               </h3>
               <div className="rounded-lg overflow-hidden h-80">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/student-1-x4OMGM2uVgkkJhltws8g1nhEU5Ftjw.jpeg"
+                  src="/assets/student-2.jpg"
                   width={600}
                   height={400}
-                  alt="Group of excited students"
+                  alt="Student projects at RMIT"
                   className="object-cover w-full h-full"
                 />
               </div>
-              <p className="text-gray-700">Mistakes are expected and recognized as opportunities to learn and grow.</p>
+              <p className="text-gray-700">Learn about the latest in articiial intelligence and machine learnign strategies to tackle problems big and small.</p>
             </div>
             <div className="space-y-4">
               <h3 className="text-xl font-medium bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">
-                Learn to apply Artificial Intelligence
+                Learn to problem solve with Arduino robotics and code
               </h3>
               <div className="rounded-lg overflow-hidden h-80">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/student-2-QYtjqkbdnIEXuWLF4QUNy7mxYuHRp2.jpeg"
+                  src="/assets/student-1.jpg"
                   width={600}
                   height={400}
-                  alt="Student working with AI visualization"
+                  alt="Student projects at RMIT"
                   className="object-cover w-full h-full"
                 />
               </div>
@@ -240,7 +229,7 @@ export default function LandingPage() {
       <AnimatedSection className="w-full py-16 md:py-24 bg-gray-800 text-white mt-8">
         <div className="container px-4 md:px-8 mx-auto max-w-[1400px]">
           <h2 className="text-4xl font-bold tracking-tighter bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text mb-12">
-            The Schedule for the Week - June 16-20
+            The Schedule for the Week of June 16-20
           </h2>
 
           {/* Hanoi Schedule */}
@@ -372,14 +361,14 @@ export default function LandingPage() {
                 position: "Founder of FutureTech Camp",
                 specialty: "Visual Computing",
                 image:
-                  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/kap-uAxfJ8jf2WJS9KcCM7L1dbcL1Ivf3P.jpeg",
+                  "/assets/Kap.jpeg",
               },
               {
                 name: "Jeff Nijsse",
                 position: "Senior Lecturer",
                 specialty: "Arduino Robotics",
                 image:
-                  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/STEM-Fair-053%20-%20Copy.jpg-RTn8YwOiQ683j03BVObR5yZgloYUnr.jpeg",
+                  "/assets/Jeff.jpg",
               },
               {
                 name: "Linh Tran",
@@ -459,7 +448,7 @@ export default function LandingPage() {
       </AnimatedSection>
 
       {/* FAQ Section - Changed to dark background */}
-      <AnimatedSection className="w-full py-16 md:py-24 bg-gray-800 text-white mt-8">
+      <AnimatedSection className="w-full py-16 md:py-24 bg-gray-800 text-white mt-8" animate={false}>
         <div className="container px-4 md:px-8 mx-auto max-w-[1400px]">
           <h2 className="text-4xl font-bold tracking-tighter bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text mb-12">
             Frequently Asked Questions
@@ -479,14 +468,14 @@ export default function LandingPage() {
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-300">
                   Simultaneously on Saigon and Hanoi RMIT campuses. Students can choose the location that is most
-                  convenient for them, with identical curriculum and activities at both campuses.
+                  convenient for them, with similar curriculum and activities at both campuses.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3" className="border-white/20">
                 <AccordionTrigger className="text-lg font-medium text-white">How much does it cost?</AccordionTrigger>
                 <AccordionContent className="text-gray-300">
                   The cost of the camp will be sponsored by RMIT, however travel arrangements to and from campus each
-                  day will be covered by the student.
+                  day will be covered by the student. Lunch every day and all course resources will be provided by RMIT.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4" className="border-white/20">
@@ -511,11 +500,12 @@ export default function LandingPage() {
         id="apply-section"
         ref={applyRef}
         className="w-full py-16 md:py-24 bg-gradient-to-r from-pink-500 to-purple-600 text-white"
+        animate={false}
       >
         <div className="container px-4 md:px-8 mx-auto max-w-[1400px] text-center">
           <h2 className="text-4xl font-bold tracking-tighter mb-6">Apply Now</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Space is limited. Programs available in Saigon and Hanoi campuses. Secure your spot today!
+            Space is limited. Programs available in Saigon and Hanoi campuses. <br />Secure your spot today!
           </p>
           <Button
             size="lg"
@@ -529,25 +519,26 @@ export default function LandingPage() {
 
       {/* Sticky Apply Now Button */}
       {showStickyButton && (
-      <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-slate-800 to-gray-700 border-t border-gray-600 shadow-lg p-4 flex justify-center items-center z-50 animate-fade-in-up">
-        <Button
-          size="lg"
-          className="bg-gradient-to-r from-pink-600 to-purple-700 text-white text-lg px-8 py-6 h-auto rounded-full shadow-lg relative overflow-hidden transition-all hover:shadow-purple-300/50 hover:scale-105 border border-white"
-          onClick={() => {
-            // First scroll to the apply section
-            const applySection = document.getElementById("apply-section")
-            if (applySection) {
-              applySection.scrollIntoView({ behavior: "smooth" })
-            }
-            
-            // Then open the application URL in a new tab
-            window.open(APPLY_FORM_URL, "_blank")
-          }}
-        >
-          Apply Now for Future Tech Camp 2025
-        </Button>
-      </div>
-      )}
+  <div className={`fixed bottom-0 left-0 right-0 bg-gradient-to-r from-slate-800 to-gray-700 border-t border-gray-600 shadow-lg p-4 flex justify-center items-center z-50 animate-fade-in-up ${isFadingOut ? 'fade-out' : 'fade-in'}`}>
+    <Button
+      size="lg"
+      className="bg-gradient-to-r from-pink-600 to-purple-700 text-white text-lg px-8 py-6 h-auto rounded-full shadow-lg relative overflow-hidden transition-all hover:shadow-purple-300/50 hover:scale-105 border border-white"
+      onClick={() => {
+        // First scroll to the apply section
+        const applySection = document.getElementById("apply-section")
+        if (applySection) {
+          applySection.scrollIntoView({ behavior: "smooth" })
+        }
+        
+        // Then open the application URL in a new tab
+        window.open(APPLY_FORM_URL, "_blank")
+      }}
+    >
+      Apply Now for Future Tech Camp 2025
+    </Button>
+  </div>
+)}
+
 
       {/* Footer with RMIT Saigon campus background */}
       <footer ref={footerRef} className="w-full py-16 bg-gray-800 text-white relative">
@@ -563,18 +554,18 @@ export default function LandingPage() {
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/rmit-logo-NvXfm8RbxMYDQOYh5K1nZxohipF5GO.png"
-                  width={150}
-                  height={50}
+                  src="/assets/RMIT-logo-25-static.png"
+                  width={300}
+                  height={100}
                   alt="RMIT University Logo"
                   className="object-contain"
                 />
               </div>
               <h3 className="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">
-                FutureTech Camp
+                FutureTech Camp 2025
               </h3>
               <p className="text-sm text-gray-300">
-                A premier technology education program for students, hosted by RMIT University.
+                A premier technology education experience for high school students, hosted by RMIT University.
               </p>
             </div>
 
@@ -595,16 +586,14 @@ export default function LandingPage() {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">Contact</h3>
               <ul className="space-y-2">
-                <li className="text-sm">Email: futuretech@rmit.edu.vn</li>
-                <li className="text-sm">Phone: +84 28 3776 1300</li>
-                <li className="text-sm">Fax: +84 28 3776 1399</li>
+                <li className="text-sm">Email: futuretechcamp@rmit.edu.vn</li>
               </ul>
             </div>
 
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">Follow Us</h3>
               <div className="flex space-x-4">
-                <Link href="#" className="text-white hover:text-pink-400">
+                <Link href="https://www.facebook.com/RMITUniversityVietnam" className="text-white hover:text-pink-400">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -620,7 +609,7 @@ export default function LandingPage() {
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                   </svg>
                 </Link>
-                <Link href="#" className="text-white hover:text-pink-400">
+                <Link href="https://www.instagram.com/rmituniversityvietnam/" className="text-white hover:text-pink-400">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -638,23 +627,25 @@ export default function LandingPage() {
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                   </svg>
                 </Link>
-                <Link href="#" className="text-white hover:text-pink-400">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-6 w-6"
-                  >
-                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-                  </svg>
-                </Link>
-                <Link href="#" className="text-white hover:text-pink-400">
+                <Link href="https://www.youtube.com/c/RMITUniversityVietnam" className="text-white hover:text-pink-400" target="_blank" rel="noopener noreferrer">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="h-6 w-6"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" />
+    <path d="M10 9l5 3l-5 3z" />
+  </svg>
+</Link>
+                <Link href="https://www.linkedin.com/company/rmit-university-vietnam" className="text-white hover:text-pink-400">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"

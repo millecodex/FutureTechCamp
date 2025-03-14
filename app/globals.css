@@ -105,6 +105,10 @@
 
     --chart-5: 340 75% 55%
   }
+  .fade-out {
+    transition: opacity 0.3s ease-out;
+    opacity: 0;
+  }
 }
 
 
