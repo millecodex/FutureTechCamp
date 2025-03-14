@@ -1,5 +1,4 @@
 "use client"
-
 import React from 'react'
 import Link from "next/link"
 import Image from "next/image"
@@ -15,37 +14,7 @@ export default function LandingPage() {
   const applyRef = useRef<HTMLDivElement>(null)
   const APPLY_FORM_URL = "https://forms.gle/exampleFormLink123456"
 
-  /* useEffect(() => {
-    const handleScroll = () => {
-      if (footerRef.current && applyRef.current) {
-        const footerRect = footerRef.current.getBoundingClientRect()
-        const applyRect = applyRef.current.getBoundingClientRect()  
-        const windowHeight = window.innerHeight
-        
-        // Hide button when footer is visible or when apply section is visible
-        // Using a smaller threshold to hide button before footer is fully visible
-        const isFooterVisible = footerRect.top < windowHeight - 100
-        const isApplySectionVisible = applyRect.top < windowHeight && applyRect.bottom > 0
   
-        if (!isFooterVisible && !isApplySectionVisible) {
-          setIsFadingOut(false);
-          setShowStickyButton(true);
-        } else {
-          setIsFadingOut(true);
-          setTimeout(() => {
-            setShowStickyButton(false);
-          }, 300); // Match the transition duration
-        }
-      }
-    }
-  
-    window.addEventListener("scroll", handleScroll)
-    // Initial check
-    handleScroll()
-  
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [footerRef, applyRef]) */
-
   useEffect(() => {
     let scrollTimeout: number | null = null;
   
@@ -71,7 +40,7 @@ export default function LandingPage() {
         }
       }
     };
-  
+    // tame that scroll
     const debouncedHandleScroll = () => {
       if (scrollTimeout !== null) {
         window.clearTimeout(scrollTimeout);
@@ -141,7 +110,7 @@ export default function LandingPage() {
   
   return (
     <div className="flex min-h-screen flex-col bg-gray-50">
-      {/* Hero Section - Updated with larger logo and title */}
+      {/* Hero Section*/}
       <section className="w-full py-16 md:py-20 bg-gray-50">
         <div className="container px-4 md:px-8 mx-auto max-w-[1400px]">
           <div className="flex flex-col space-y-8">
@@ -172,8 +141,8 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 2. Experience University Learning Section */}
-      <AnimatedSection className="w-full py-16 md:py-24 border-t border-gray-200 bg-gray-50 mt-8">
+      {/* 1. Experience University Learning Section; lets go Dark */}
+      <AnimatedSection className="w-full py-16 md:py-24 border-t border-gray-200 bg-gray-800 mt-8">
         <div className="container px-4 md:px-8 mx-auto max-w-[1400px]">
           <h2 className="text-4xl font-bold tracking-tighter bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text mb-12">
             This Summer Come Experience University Learning at RMIT in the School of Science, Engineering, and Technology.
@@ -192,7 +161,7 @@ export default function LandingPage() {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <p className="text-gray-700">Learn about the latest in articiial intelligence and machine learnign strategies to tackle problems big and small.</p>
+              <p className="text-white">Learn about the latest in articiial intelligence and machine learnign strategies to tackle problems big and small.</p>
             </div>
             <div className="space-y-4">
               <h3 className="text-xl font-medium bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">
@@ -207,14 +176,14 @@ export default function LandingPage() {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <p className="text-gray-700">Grasp problems, make plans, get alignment, and make course corrections.</p>
+              <p className="text-white">Grasp problems, make plans, get alignment, and make course corrections.</p>
             </div>
           </div>
         </div>
       </AnimatedSection>
 
-      {/* What We're All About Section */}
-      <AnimatedSection className="w-full py-16 md:py-24 bg-gray-900 mt-8">
+      {/* 2. What We're All About Section */}
+      <AnimatedSection className="w-full py-16 md:py-24 bg-gray-50 mt-8">
         <div className="container px-4 md:px-8 mx-auto max-w-[1400px]">
           <h2 className="text-4xl font-bold tracking-tighter bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text mb-8">
             What We're All About
@@ -231,8 +200,8 @@ export default function LandingPage() {
         </div>
       </AnimatedSection>
 
-      {/* 3. Be Inspired Section - Changed to light background */}
-      <AnimatedSection className="w-full py-16 md:py-24 bg-gray-50 relative mt-8">
+      {/* 3. Be Inspired Section */}
+      <AnimatedSection className="w-full py-16 md:py-24 bg-gray-800 relative mt-8">
         <div className="container px-4 md:px-8 mx-auto max-w-[1400px] relative z-10">
           <h2 className="text-4xl font-bold tracking-tighter bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text mb-12">
             Be inspired by real Lecturers and Professors
@@ -243,9 +212,9 @@ export default function LandingPage() {
                 <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold text-xl">
                   1
                 </div>
-                <h3 className="text-xl font-medium">Work in teams</h3>
+                <h3 className="text-xl font-bold text-gray-100">Work in teams</h3>
               </div>
-              <p className="text-gray-600">
+              <p className="text-gray-200">
                 Collaborate with and meet other students that are also passionate about science and technology.
               </p>
             </div>
@@ -254,25 +223,25 @@ export default function LandingPage() {
                 <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold text-xl">
                   2
                 </div>
-                <h3 className="text-xl font-medium">Play games</h3>
+                <h3 className="text-xl font-bold text-gray-100">Play games</h3>
               </div>
-              <p className="text-gray-600">Grasp problems, make plans, get alignment, execute, and course correct.</p>
+              <p className="text-gray-200">Grasp problems, make plans, get alignment, execute, and course correct.</p>
             </div>
             <div className="space-y-4">
               <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold text-xl">
                   3
                 </div>
-                <h3 className="text-xl font-medium">Experience RMIT</h3>
+                <h3 className="text-xl font-bold text-gray-100">Experience RMIT</h3>
               </div>
-              <p className="text-gray-600">Learn in the same environment with the same facilites as RMIT University students.</p>
+              <p className="text-gray-200">Learn in the same environment with the same facilites as RMIT University students.</p>
             </div>
           </div>
         </div>
       </AnimatedSection>
 
-      {/* 5. Schedule Section - Dark background */}
-      <AnimatedSection className="w-full py-16 md:py-24 bg-gray-800 text-white mt-8">
+      {/* 4. Schedule Section */}
+      <AnimatedSection className="w-full py-16 md:py-24 bg-gray-50 text-white mt-8">
         <div className="container px-4 md:px-8 mx-auto max-w-[1400px]">
           <h2 className="text-4xl font-bold tracking-tighter bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text mb-12">
             The Schedule for the Week of June 16-20
@@ -280,7 +249,7 @@ export default function LandingPage() {
 
           {/* Hanoi Schedule */}
           <div className="mb-12">
-            <h3 className="text-2xl font-bold text-white mb-6">Hanoi Campus</h3>
+            <h3 className="text-2xl font-bold text-gray-800 mb-6">Hanoi Campus</h3>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
@@ -337,7 +306,7 @@ export default function LandingPage() {
 
           {/* Saigon Schedule */}
           <div>
-            <h3 className="text-2xl font-bold text-white mb-6">Saigon Campus</h3>
+            <h3 className="text-2xl font-bold text-gray-800 mb-6">Saigon Campus</h3>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
@@ -394,8 +363,8 @@ export default function LandingPage() {
         </div>
       </AnimatedSection>
 
-      {/* Meet the Lecturers Section */}
-      <AnimatedSection className="w-full py-16 md:py-24 bg-gray-50 mt-8">
+      {/* 5. Meet the Lecturers Section */}
+      <AnimatedSection className="w-full py-16 md:py-24 bg-gray-800 mt-8">
         <div className="container px-4 md:px-8 mx-auto max-w-[1400px]">
           <h2 className="text-4xl font-bold tracking-tighter bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text mb-12">
             Meet the Lecturers
@@ -493,48 +462,48 @@ export default function LandingPage() {
         </div>
       </AnimatedSection>
 
-      {/* FAQ Section - Changed to dark background */}
-      <AnimatedSection className="w-full py-16 md:py-24 bg-gray-800 text-white mt-8" animate={false}>
+      {/* 6. FAQ Section - Changed to dark background */}
+      <AnimatedSection className="w-full py-16 md:py-24 bg-gray-50 text-gray-800 mt-8" animate={false}>
         <div className="container px-4 md:px-8 mx-auto max-w-[1400px]">
           <h2 className="text-4xl font-bold tracking-tighter bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text mb-12">
             Frequently Asked Questions
           </h2>
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="item-1" className="border-white/20">
-                <AccordionTrigger className="text-lg font-medium text-white">Who is this camp for?</AccordionTrigger>
-                <AccordionContent className="text-gray-300">
+              <AccordionItem value="item-1" className="border-gray-800">
+                <AccordionTrigger className="text-lg font-medium text-gray-800">Who is this camp for?</AccordionTrigger>
+                <AccordionContent className="text-gray-800">
                   Passionate high schoolers looking to learn about future tech. The program is designed for students who
                   are curious about technology and want to develop skills in coding, AI, and digital innovation.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="item-2" className="border-white/20">
-                <AccordionTrigger className="text-lg font-medium text-white">
+              <AccordionItem value="item-2" className="border-gray-800">
+                <AccordionTrigger className="text-lg font-medium text-gray-800">
                   Where is this camp located?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-300">
+                <AccordionContent className="text-gray-800">
                   Simultaneously on Saigon and Hanoi RMIT campuses. Students can choose the location that is most
                   convenient for them, with similar curriculum and activities at both campuses.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="item-3" className="border-white/20">
-                <AccordionTrigger className="text-lg font-medium text-white">How much does it cost?</AccordionTrigger>
-                <AccordionContent className="text-gray-300">
+              <AccordionItem value="item-3" className="border-gray-800">
+                <AccordionTrigger className="text-lg font-medium text-gray-800">How much does it cost?</AccordionTrigger>
+                <AccordionContent className="text-gray-800">
                   The cost of the camp will be sponsored by RMIT, however travel arrangements to and from campus each
                   day will be covered by the student. Lunch every day and all course resources will be provided by RMIT.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="item-4" className="border-white/20">
-                <AccordionTrigger className="text-lg font-medium text-white">Question 4 here</AccordionTrigger>
-                <AccordionContent className="text-gray-300">This has answer three.</AccordionContent>
+              <AccordionItem value="item-4" className="border-gray-800">
+                <AccordionTrigger className="text-lg font-medium text-gray-800">Question 4 here</AccordionTrigger>
+                <AccordionContent className="text-gray-800">This has answer three.</AccordionContent>
               </AccordionItem>
-              <AccordionItem value="item-5" className="border-white/20">
-                <AccordionTrigger className="text-lg font-medium text-white">Question 5 here</AccordionTrigger>
-                <AccordionContent className="text-gray-300">This has answer three.</AccordionContent>
+              <AccordionItem value="item-5" className="border-gray-800">
+                <AccordionTrigger className="text-lg font-medium text-gray-800">Question 5 here</AccordionTrigger>
+                <AccordionContent className="text-gray-800">This has answer three.</AccordionContent>
               </AccordionItem>
-              <AccordionItem value="item-6" className="border-white/20">
-                <AccordionTrigger className="text-lg font-medium text-white">Question 6 here</AccordionTrigger>
-                <AccordionContent className="text-gray-300">This has answer three.</AccordionContent>
+              <AccordionItem value="item-6" className="border-gray-800">
+                <AccordionTrigger className="text-lg font-medium text-gray-800">Question 6 here</AccordionTrigger>
+                <AccordionContent className="text-gray-800">This has answer three.</AccordionContent>
               </AccordionItem>
             </Accordion>
           </div>
@@ -586,7 +555,7 @@ export default function LandingPage() {
 )}
 
 
-      {/* Footer with RMIT Saigon campus background */}
+      {/* Footer  */}
       <footer ref={footerRef} className="w-full py-16 bg-gray-800 text-white relative">
         <div className="absolute inset-0 bg-black opacity-80 z-0"></div>
         <div
