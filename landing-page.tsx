@@ -15,7 +15,7 @@ export default function LandingPage() {
   const applyRef = useRef<HTMLDivElement>(null)
   const APPLY_FORM_URL = "https://forms.gle/exampleFormLink123456"
 
-  useEffect(() => {
+  /* useEffect(() => {
     const handleScroll = () => {
       if (footerRef.current && applyRef.current) {
         const footerRect = footerRef.current.getBoundingClientRect()
@@ -44,7 +44,53 @@ export default function LandingPage() {
     handleScroll()
   
     return () => window.removeEventListener("scroll", handleScroll)
+  }, [footerRef, applyRef]) */
+
+  useEffect(() => {
+    let scrollTimeout: number | null = null;
+  
+    const handleScroll = () => {
+      if (footerRef.current && applyRef.current) {
+        const footerRect = footerRef.current.getBoundingClientRect()
+        const applyRect = applyRef.current.getBoundingClientRect()  
+        const windowHeight = window.innerHeight
+        
+        // Hide button when footer is visible or when apply section is visible
+        // Using a smaller threshold to hide button before footer is fully visible
+        const isFooterVisible = footerRect.top < windowHeight - 50
+        const isApplySectionVisible = applyRect.top < windowHeight && applyRect.bottom > 0
+  
+        if (!isFooterVisible && !isApplySectionVisible) {
+          setIsFadingOut(false);
+          setShowStickyButton(true);
+        } else {
+          setIsFadingOut(true);
+          setTimeout(() => {
+            setShowStickyButton(false);
+          }, 300); // Match the transition duration
+        }
+      }
+    };
+  
+    const debouncedHandleScroll = () => {
+      if (scrollTimeout !== null) {
+        window.clearTimeout(scrollTimeout);
+      }
+      scrollTimeout = window.setTimeout(handleScroll, 150);
+    };
+  
+    window.addEventListener("scroll", debouncedHandleScroll)
+    // Initial check
+    handleScroll()
+  
+    return () => {
+      window.removeEventListener("scroll", debouncedHandleScroll)
+      if (scrollTimeout !== null) {
+        window.clearTimeout(scrollTimeout);
+      }
+    }
   }, [footerRef, applyRef])
+  
 
   // Define the props interface
   interface AnimatedSectionProps {
@@ -130,7 +176,7 @@ export default function LandingPage() {
       <AnimatedSection className="w-full py-16 md:py-24 border-t border-gray-200 bg-gray-50 mt-8">
         <div className="container px-4 md:px-8 mx-auto max-w-[1400px]">
           <h2 className="text-4xl font-bold tracking-tighter bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text mb-12">
-            This Summer Come Experience University Learning at RMIT
+            This Summer Come Experience University Learning at RMIT in the School of Science, Engineering, and Technology.
           </h2>
           <div className="grid gap-8 md:grid-cols-2">
             <div className="space-y-4">
@@ -200,7 +246,7 @@ export default function LandingPage() {
                 <h3 className="text-xl font-medium">Work in teams</h3>
               </div>
               <p className="text-gray-600">
-                Collaborate with peers from all over the world. Communication and teamwork are key.
+                Collaborate with and meet other students that are also passionate about science and technology.
               </p>
             </div>
             <div className="space-y-4">
@@ -217,9 +263,9 @@ export default function LandingPage() {
                 <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold text-xl">
                   3
                 </div>
-                <h3 className="text-xl font-medium">Learn with teachers</h3>
+                <h3 className="text-xl font-medium">Experience RMIT</h3>
               </div>
-              <p className="text-gray-600">Hone skills with tailored feedback and guidance from skilled educators.</p>
+              <p className="text-gray-600">Learn in the same environment with the same facilites as RMIT University students.</p>
             </div>
           </div>
         </div>
@@ -508,12 +554,12 @@ export default function LandingPage() {
             Space is limited. Programs available in Saigon and Hanoi campuses. <br />Secure your spot today!
           </p>
           <Button
-            size="lg"
-            className="bg-white text-purple-500 hover:bg-gray-100 text-lg px-8 py-6 h-auto rounded-full shadow-lg relative overflow-hidden transition-all hover:shadow-purple-300/50 hover:scale-105 animate-pulse"
-            onClick={() => window.open(APPLY_FORM_URL, "_blank")}
-          >
-            Apply Now for FutureTech Camp 2025
-          </Button>
+  size="lg"
+  className="bg-white text-purple-500 border border-purple-500 hover:bg-gray-100 text-lg px-8 py-6 h-auto rounded-full shadow-lg relative overflow-hidden transition-all hover:shadow-purple-300/50 hover:scale-105 animate-pulse"
+  onClick={() => window.open(APPLY_FORM_URL, "_blank")}
+>
+  Apply Now for FutureTech Camp 2025
+</Button>
         </div>
       </AnimatedSection>
 
@@ -553,6 +599,7 @@ export default function LandingPage() {
           <div className="grid gap-8 md:grid-cols-4">
             <div className="space-y-4">
               <div className="flex items-center gap-2">
+              <a href="https://www.rmit.edu.vn/about-us/schools-and-centres/school-of-science-engineering-and-technology" target="_blank" rel="noopener noreferrer">
                 <Image
                   src="/assets/RMIT-logo-25-static.png"
                   width={300}
@@ -560,6 +607,7 @@ export default function LandingPage() {
                   alt="RMIT University Logo"
                   className="object-contain"
                 />
+              </a>
               </div>
               <h3 className="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">
                 FutureTech Camp 2025
