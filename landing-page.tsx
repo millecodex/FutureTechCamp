@@ -445,7 +445,7 @@ export default function LandingPage() {
                 name: "Hoang Van",
                 position: "Lecturer",
                 specialty: "Generative AI",
-                image: "/assets/Hoang.png",
+                image: "/assets/Hoang.jpeg",
               },
               {
                 name: "Sreenivas Tirumala",
