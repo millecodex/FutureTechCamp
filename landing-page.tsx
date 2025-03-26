@@ -423,10 +423,16 @@ export default function LandingPage() {
             {[
               {
                 name: "Kapil Dev",
-                position: "Founder of FutureTech Camp",
+                position: "Project Manager, Hanoi Campus",
                 specialty: "Visual Computing",
                 image:
                   "/assets/Kap.png",
+              },
+              {
+                name: "Linh Tran",
+                position: "Project Manager, Saigon Campus",
+                specialty: "Python Programming",
+                image: "/assets/Linh.png",
               },
               {
                 name: "Jeff Nijsse",
@@ -434,12 +440,6 @@ export default function LandingPage() {
                 specialty: "Arduino Robotics",
                 image:
                   "/assets/Jeff.jpg",
-              },
-              {
-                name: "Linh Tran",
-                position: "Lecturer",
-                specialty: "Python Programming",
-                image: "/assets/Linh.png",
               },
               {
                 name: "Hoang Van",
@@ -463,7 +463,7 @@ export default function LandingPage() {
                 name: "Phong Ngo",
                 position: "Lecturer",
                 specialty: "Game Development",
-                image: "/assets/Phong.jpeg",
+                image: "/assets/Phong1.jpeg",
               },
               { name: "Tom Huynh", 
                 position: "Lecturer", 
