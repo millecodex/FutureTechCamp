@@ -558,15 +558,15 @@ export default function LandingPage() {
               </AccordionItem>
               <AccordionItem value="item-4" className="border-gray-800">
                 <AccordionTrigger className="text-lg font-medium text-gray-800">Question 4 here</AccordionTrigger>
-                <AccordionContent className="text-gray-800">This has answer three.</AccordionContent>
+                <AccordionContent className="text-gray-800">This has answer 4.</AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-5" className="border-gray-800">
                 <AccordionTrigger className="text-lg font-medium text-gray-800">Question 5 here</AccordionTrigger>
-                <AccordionContent className="text-gray-800">This has answer three.</AccordionContent>
+                <AccordionContent className="text-gray-800">This has answer 5.</AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-6" className="border-gray-800">
-                <AccordionTrigger className="text-lg font-medium text-gray-800">Quçestion 6 here</AccordionTrigger>
-                <AccordionContent className="text-gray-800">This has answer three.</AccordionContent>
+                <AccordionTrigger className="text-lg font-medium text-gray-800">Question 6 here</AccordionTrigger>
+                <AccordionContent className="text-gray-800">This has answer 6.</AccordionContent>
               </AccordionItem>
             </Accordion>
           </div>
