@@ -13,6 +13,11 @@ export default function LandingPage() {
   const footerRef = useRef<HTMLDivElement>(null)
   const applyRef = useRef<HTMLDivElement>(null)
   const APPLY_FORM_URL = "https://forms.gle/exampleFormLink123456"
+  
+  //state to track whether the video is showing
+  const [showVideo, setShowVideo] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
 
   
   useEffect(() => {
@@ -59,6 +64,51 @@ export default function LandingPage() {
       }
     }
   }, [footerRef, applyRef])
+  
+
+  //video overlay component
+  const VideoOverlay = () => {
+    const handleClose = () => {
+      if (videoRef.current) {
+        videoRef.current.pause();
+      }
+      setShowVideo(false);
+    };
+  
+    useEffect(() => {
+      if (showVideo && videoRef.current) {
+        videoRef.current.play();
+      }
+    }, [showVideo]);
+  
+    if (!showVideo) return null;
+  
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4">
+        <div className="relative w-full max-w-4xl">
+          <button 
+            onClick={handleClose}
+            className="absolute -top-10 right-0 text-white hover:text-pink-500 transition"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+          <video 
+            ref={videoRef}
+            className="w-full rounded-lg shadow-xl"
+            controls
+            loop
+            preload="metadata"
+          >
+            <source src="/assets/kap-video-low.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    );
+  };
   
 
   // Define the props interface
@@ -432,7 +482,9 @@ export default function LandingPage() {
               },
             ].map((lecturer, index) => (
               <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
-                <div className="bg-gray-200 w-full aspect-square">
+                <div className="bg-gray-200 w-full aspect-square"
+                onClick={() => lecturer.name === "Kapil Dev" && setShowVideo(true)}
+                >
                   {lecturer.image ? (
                     <Image
                       src={lecturer.image || "/placeholder.svg"}
@@ -454,7 +506,18 @@ export default function LandingPage() {
                   <p className="bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">
                     {lecturer.position}
                   </p>
-                  <p className="text-sm text-gray-600">{lecturer.specialty}</p>
+
+                  {lecturer.name === "Kapil Dev" ? (
+        <p 
+          className="text-sm text-gray-600 cursor-pointer hover:text-pink-500 transition"
+          onClick={() => setShowVideo(true)}
+        >
+          {lecturer.specialty}
+        </p>
+      ) : (
+        <p className="text-sm text-gray-600">{lecturer.specialty}</p>
+      )}
+                  
                 </div>
               </div>
             ))}
@@ -502,7 +565,7 @@ export default function LandingPage() {
                 <AccordionContent className="text-gray-800">This has answer three.</AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-6" className="border-gray-800">
-                <AccordionTrigger className="text-lg font-medium text-gray-800">Question 6 here</AccordionTrigger>
+                <AccordionTrigger className="text-lg font-medium text-gray-800">Quçestion 6 here</AccordionTrigger>
                 <AccordionContent className="text-gray-800">This has answer three.</AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -553,7 +616,8 @@ export default function LandingPage() {
     </Button>
   </div>
 )}
-
+{/* Add the VideoOverlay component*/}
+<VideoOverlay />
 
       {/* Footer  */}
       <footer ref={footerRef} className="w-full py-16 bg-gray-800 text-white relative">
