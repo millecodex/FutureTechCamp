@@ -491,7 +491,7 @@ export default function LandingPage() {
                       width={400}
                       height={300}
                       alt={lecturer.name}
-                      className="w-full h-full object-cover"
+                      className={`w-full h-full object-cover ${lecturer.name === "Kapil Dev" ? "cursor-pointer" : ""}`}
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
