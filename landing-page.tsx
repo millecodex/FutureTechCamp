@@ -241,7 +241,7 @@ export default function LandingPage() {
           <div className="aspect-w-16 aspect-h-9 bg-gray-800 rounded-lg overflow-hidden max-w-5xl mx-auto">
             <iframe
               className="w-full h-[500px]"
-              src="https://youtu.be/lfQB5iPPyms?si=MhsouVxAeYR8J1x5"
+              src="https://youtube.com/embed/lfQB5iPPyms"
               title="SpaceX Launch"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
