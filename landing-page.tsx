@@ -457,7 +457,7 @@ export default function LandingPage() {
                 name: "Nhat-Quang Tran",
                 position: "Lecturer",
                 specialty: "AI Ethics & Laws",
-                image: "/assets/NQ.png",
+                image: "/assets/NQ2.jpg",
               },
               {
                 name: "Phong Ngo",
@@ -478,7 +478,7 @@ export default function LandingPage() {
               { name: "Ben Scott", 
                 position: "Lecturer", 
                 specialty: "Cyber Detective", 
-                image: "/assets/Ben.png" 
+                image: "/assets/Ben2.jpg" 
               },
             ].map((lecturer, index) => (
               <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
