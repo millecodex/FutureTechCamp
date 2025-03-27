@@ -451,7 +451,7 @@ export default function LandingPage() {
                 name: "Sreenivas Tirumala",
                 position: "Senior Lecturer",
                 specialty: "Cyber Detective",
-                image: "/assets/Sree.jpeg",
+                image: "/assets/Sree1.jpg",
               },
               {
                 name: "Nhat-Quang Tran",
